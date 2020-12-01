@@ -5,13 +5,13 @@ var io = require('socket.io')(http)
 const bodyParser = require("body-parser");
 const cors = require("cors");
 var path = require('path');
-// const rosnodejs = require('rosnodejs');
-// const std_msgs = rosnodejs.require("std_msgs").msgs;
+const rosnodejs = require('rosnodejs');
+const std_msgs = rosnodejs.require("std_msgs").msgs;
 
-// const position = require('./private/position');
-// const goal = require('./private/goal');
-// const battery = require('./private/battery');
-// const velocity = require('./private/velocity');
+const position = require('./private/position');
+const goal = require('./private/goal');
+const battery = require('./private/battery');
+const velocity = require('./private/velocity');
 app.use('/public/', express.static(path.join(__dirname, './public/')))
 app.use('/node_modules/', express.static(path.join(__dirname, './node_modules/')))
 app.use(cors());
@@ -21,12 +21,24 @@ app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, 'views/sokect.html'));
 });
 
-// rosnodejs.initNode("my_ros_node").then((rosNode) => {
+rosnodejs.initNode("my_ros_node").then((rosNode) => {
   // console.log("just init a ros node");
   // 
   //订阅postion
-  // let position = position();
-  // console.log(position);
+  var pos = position().then(
+    
+    function(){
+      console.log(pos);
+      io.emit('chat message', pos);
+    },
+      (pos)=>{
+        console.log(pos+"pos1");
+      }
+  );
+
+  
+  
+
 
   // goal();
   // position();
@@ -61,10 +73,6 @@ app.get("/", (req, res) => {
   http.listen(3000, () => {
     console.log("Server now listening on port 3000");
   });
-    
-
-
- 
-// });
+});
 
 
