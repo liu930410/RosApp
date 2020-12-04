@@ -14,8 +14,10 @@ const battery = require('./private/battery');
 const velocity = require('./private/velocity');
 app.use('/public/', express.static(path.join(__dirname, './public/')))
 app.use('/node_modules/', express.static(path.join(__dirname, './node_modules/')))
+
 app.use(cors());
 app.use(bodyParser.json());
+
 app.get("/", (req, res) => {
   // res.send("it's just a little message from ros_node");
   res.sendFile(path.join(__dirname, 'views/sokect.html'));
