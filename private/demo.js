@@ -18,6 +18,7 @@ app.get('/', (request, response) => {
    
 });
 
+
 //监听客户端链接,回调函数会传递本次链接的socket
 // io.on('connection', socket => {
 //     // 监听客户端发送的信息
