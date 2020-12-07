@@ -1,14 +1,23 @@
-const rosnodejs = require("rosnodejs");
-const std_msgs = rosnodejs.require("std_msgs").msgs;
+"use strict";
+
+const events = require('events');
 
 
 
-module.exports = function(){
+let position={
+    socketName = 'position',
+    EventEmitterName='position',
+    topicName = '/position',
+    parmaType = 'clbrobot/pose',
 
-    rosnodejs.nh.subscribe('/position', 'pose', (msgs) => {
-          
-          console.log(msgs);
-          return msgs;
-        // });
-    });
+    EventEmitter = new events.EventEmitter(),
+
+    subscribe = (rosNode)=>{
+        rosNode.subscribe(topicName, parmaType, (msgs) => {
+            EventEmitter.emit(EventEmitterName, socketName, msgs);
+        });
+    }
 }
+
+
+module.exports = position;

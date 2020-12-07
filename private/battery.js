@@ -1,13 +1,21 @@
-const rosnodejs = require("rosnodejs");
+"use strict";
+
+const events = require('events');
 
 
 
+let battery={
+    socketName = 'battery',
+    EventEmitterName='battery',
+    topicName = '/battery',
+    parmaType = 'riki_msgs/Battery',
 
-module.exports = function(){
+    EventEmitter = new events.EventEmitter(),
 
-    rosnodejs.nh.subscribe('/battery', 'riki_msgs/Battery', (msgs) => {
-          
-          console.log(msgs);
-        // });
-    });
+    subscribe = (rosNode)=>{
+        rosNode.subscribe(topicName, parmaType, (msgs) => {
+            EventEmitter.emit(EventEmitterName, socketName, msgs);
+        });
+    }
 }
+module.exports = battery;

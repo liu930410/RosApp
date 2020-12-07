@@ -1,13 +1,17 @@
-const rosnodejs = require("rosnodejs");
-const std_msgs = rosnodejs.require("std_msgs").msgs;
+"use strict";
 
+const events = require('events');
 
+let goal={
+    socketName = 'goal',
+    EventEmitterName='goal',
+    topicName = '/goal',
+    parmaType = 'std_msgs/String',
 
-module.exports = function(){
+    EventEmitter = new events.EventEmitter(),
 
-    rosnodejs.nh.subscribe('/goal', 'string', (msgs) => {
-          
-          console.log(msgs);
-        // });
-    });
+    advertise = (rosNode)=>{
+        rosNode.advertise(topicName, parmaType)
+    }
 }
+module.exports = goal;

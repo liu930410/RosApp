@@ -3,9 +3,33 @@
 
 
 
+# socket
+
+## PortName
+* 监听的端口号
+    3000
+
+## position
+*  反馈当前位置
+返回值类型
+    String
 
 
+## battery
+*  反馈当前电池电量
+返回值类型
+    String
 
+
+## velocity
+*  反馈当前速度
+返回值类型
+    String
+
+## goal
+* 生成目标位置
+返回值类型
+    String
 
 # 话题
 
