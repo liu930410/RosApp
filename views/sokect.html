@@ -26,14 +26,26 @@
     $('form').submit(function(){
     //触发了chat message 事件
     //发送了#m => input 里面的value值
-    socket.emit('chat message', $('#m').val());
-    $('#m').val('');
-    return false;
+      socket.emit('goal', $('#m').val());
+      $('#m').val('');
+      return false;
     });
     //在客户端 捕获chat message事件
-    socket.on('chat message', function(msg){
-    $('#messages').append($('<li>').text(msg));
-    });
+      socket.on('battery', function(msg){
+        //  $('#messages').append($('<li>').text(msg));
+          console.log(msg);
+      });
+      socket.on('position', function(msg){
+        //  $('#messages').append($('<li>').text(msg));
+          console.log(msg);
+      });
+      socket.on('velocity', function(msg){
+        //  $('#messages').append($('<li>').text(msg));
+          console.log(msg);
+      });
+
+
+
     });
     </script>
 </html>
