@@ -1,17 +1,17 @@
-"use strict";
+'use strict';
 
 const events = require('events');
 
-let goal={
-    socketName = 'goal',
-    EventEmitterName='goal',
-    topicName = '/goal',
-    parmaType = 'std_msgs/String',
+let goal = {
+    'socketName': 'goal',
+    'EventEmitterName': 'goal',
+    'topicName': '/goal',
+    'parmaType': 'std_msgs/Int8',
 
-    EventEmitter = new events.EventEmitter(),
+    'EventEmitter': new events.EventEmitter(),
 
-    advertise = (rosNode)=>{
-        rosNode.advertise(topicName, parmaType)
+    'advertise': (rosNode) => {
+        return rosNode.advertise(goal.topicName, goal.parmaType);
     }
-}
+};
 module.exports = goal;
