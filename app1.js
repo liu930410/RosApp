@@ -1,8 +1,11 @@
-var app = require('express')()//链式语法
-var http = require('http').Server(app)
-var io = require('socket.io')(http);
-const path = require('path');
+/* eslint-disable no-undef */
+/* eslint-disable new-cap */
+
+const app = require('express')();
+const server = require('http').createServer(app);
+const io = require('socket.io')(server);
 const express = require('express');
+const path = require('path');
 //2。express 路由
 
 app.use('/public/', express.static(path.join(__dirname, './public/')));
@@ -19,6 +22,7 @@ io.on('connection', function(socket){
     //socket = client
     socket.on('disconnect', function(){
         console.log('user disconnected');
+
     });
     io.emit('position', '123');
     //绑定了一个chat message事件 ,在前端触发
@@ -26,12 +30,18 @@ io.on('connection', function(socket){
         io.emit('chat message', msg);
         console.log(msg);
     });
+<<<<<<< HEAD
 
 
+=======
+    socket.emit('position', '1');
+    socket.emit('velocity', '2');
+    socket.emit('battery', '3');
+>>>>>>> b507e5d3cb69ba5d4608beafee01a347e92cdad5
 });
 
 //1.创建一个监听端口,开启服务器
 
-http.listen(3000, ()=>{
-console.log('listening 3000')
-})
+server.listen(3000, ()=>{
+    console.log('listening 3000');
+});
