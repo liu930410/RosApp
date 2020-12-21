@@ -20,11 +20,14 @@ io.on('connection', function(socket){
     socket.on('disconnect', function(){
         console.log('user disconnected');
     });
+    io.emit('position', '123');
     //绑定了一个chat message事件 ,在前端触发
     socket.on('chat message', function(msg){
         io.emit('chat message', msg);
         console.log(msg);
     });
+
+
 });
 
 //1.创建一个监听端口,开启服务器
