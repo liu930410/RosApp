@@ -30,14 +30,14 @@ io.on('connection', function(socket){
         io.emit('chat message', msg);
         console.log(msg);
     });
-<<<<<<< HEAD
 
 
-=======
+
+
     socket.emit('position', '1');
     socket.emit('velocity', '2');
     socket.emit('battery', '3');
->>>>>>> b507e5d3cb69ba5d4608beafee01a347e92cdad5
+
 });
 
 //1.创建一个监听端口,开启服务器
