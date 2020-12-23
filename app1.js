@@ -1,6 +1,8 @@
 /* eslint-disable no-undef */
 /* eslint-disable new-cap */
-
+/**
+ *  非ros下测试用server
+ */
 const app = require('express')();
 const server = require('http').createServer(app);
 const io = require('socket.io')(server);
@@ -24,10 +26,9 @@ io.on('connection', function(socket){
         console.log('user disconnected');
 
     });
-    io.emit('position', '123');
+    
     //绑定了一个chat message事件 ,在前端触发
-    socket.on('chat message', function(msg){
-        io.emit('chat message', msg);
+    socket.on('goal', function(msg){
         console.log(msg);
     });
 
